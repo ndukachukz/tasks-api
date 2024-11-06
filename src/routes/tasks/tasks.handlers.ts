@@ -1,4 +1,5 @@
 import * as HttpStatusCodes from "stoker/http-status-codes";
+import * as HttpStatusPhrases from "stoker/http-status-phrases";
 
 import { CreateRoute, GetByIdRoute, ListRoute } from "./tasks.routes";
 import { AppRouteHandler } from "@/lib/types";
@@ -25,6 +26,12 @@ export const getById: AppRouteHandler<GetByIdRoute> = async (c) => {
   const task = await db.query.tasksTable.findFirst({
     where: (tasks, { eq }) => eq(tasks.id, params.id),
   });
+
+  if (!task)
+    return c.json(
+      { message: HttpStatusPhrases.NOT_FOUND },
+      HttpStatusCodes.NOT_FOUND
+    );
 
   return c.json(task, HttpStatusCodes.OK);
 };

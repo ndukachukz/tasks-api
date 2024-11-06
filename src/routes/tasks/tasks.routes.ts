@@ -3,6 +3,7 @@ import { createRoute, z } from "@hono/zod-openapi";
 import * as HttpStatusCodes from "stoker/http-status-codes";
 import { insertTasksSchema, selectTasksSchema } from "@/db/schema";
 import { createErrorSchema, IdParamsSchema } from "stoker/openapi/schemas";
+import { notFoundSchema } from "@/lib/constants";
 
 const tags = ["Tasks"];
 
@@ -45,7 +46,7 @@ export const getById = createRoute({
   responses: {
     [HttpStatusCodes.OK]: jsonContent(selectTasksSchema, "Requested task"),
     [HttpStatusCodes.NOT_FOUND]: jsonContent(
-      selectTasksSchema,
+      notFoundSchema,
       "Requested task not found"
     ),
     [HttpStatusCodes.UNPROCESSABLE_ENTITY]: jsonContent(
