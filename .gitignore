@@ -1,2 +1,5 @@
 # deps
 node_modules/
+
+src/db/migrations/
+sqlite.db

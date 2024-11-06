@@ -6,6 +6,7 @@ import {
   GetByIdRoute,
   ListRoute,
   PatchRoute,
+  RemoveRoute,
 } from "./tasks.routes";
 import { AppRouteHandler } from "@/lib/types";
 import { db } from "@/db";
@@ -79,4 +80,22 @@ export const patch: AppRouteHandler<PatchRoute> = async (c) => {
     );
 
   return c.json(task, HttpStatusCodes.OK);
+};
+
+export const remove: AppRouteHandler<RemoveRoute> = async (c) => {
+  const { id } = c.req.valid("param");
+
+  const task = await db.query.tasksTable.findFirst({
+    where: (tasks, { eq }) => eq(tasks.id, id),
+  });
+
+  if (!task)
+    return c.json(
+      { message: HttpStatusPhrases.NOT_FOUND },
+      HttpStatusCodes.NOT_FOUND
+    );
+
+  await db.delete(tasksTable).where(eq(tasksTable.id, id));
+
+  return c.json(null, HttpStatusCodes.NO_CONTENT);
 };
