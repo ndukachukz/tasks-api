@@ -10,6 +10,7 @@
     "drizzle:migrate": "bun run ./src/db/migrate.ts"
   },
   "dependencies": {
+    "@asteasolutions/zod-to-openapi": "^7.2.0",
     "@hono/zod-openapi": "^0.16.4",
     "@libsql/client": "^0.14.0",
     "@neondatabase/serverless": "^0.10.1",
