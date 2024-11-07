@@ -13,4 +13,6 @@ routes.forEach((route) => {
   app.route("/", route);
 });
 
+export type AppType = (typeof routes)[number]; // use in client/frontend
+
 export default app;

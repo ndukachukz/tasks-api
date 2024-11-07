@@ -2,6 +2,7 @@
   "name": "tasks-api",
   "version": "1.0.0",
   "scripts": {
+    "test": "cross-env NODE_ENV=test LOG_LEVEL=silent vitest",
     "dev": "bun run --hot src/index.ts",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
@@ -30,6 +31,7 @@
     "@types/bun": "^1.1.13",
     "drizzle-kit": "^0.27.1",
     "eslint": "^9.14.0",
-    "tsx": "^4.19.2"
+    "tsx": "^4.19.2",
+    "vitest": "^2.1.4"
   }
 }
