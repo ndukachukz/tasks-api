@@ -31,7 +31,7 @@ A starter template for building fully documented type-safe JSON APIs with Hono a
 Clone this template without git history
 
 ```sh
-npx degit w3cj/hono-open-api-starter my-api
+bunx degit w3cj/hono-open-api-starter my-api
 cd my-api
 ```
 
@@ -44,36 +44,36 @@ cp .env.example .env
 Install dependencies
 
 ```sh
-pnpm install
+bun install
 ```
 
 Create sqlite db / push schema
 
 ```sh
-pnpm drizzle-kit push
+bun drizzle-kit push
 ```
 
 Run
 
 ```sh
-pnpm dev
+bun dev
 ```
 
 Lint
 
 ```sh
-pnpm lint
+bun lint
 ```
 
 Test
 
 ```sh
-pnpm test
+bun test
 ```
 
 ## Code Tour
 
-Base hono app exported from [app.ts](./src/app.ts). Local development uses [@hono/node-server](https://hono.dev/docs/getting-started/nodejs) defined in [index.ts](./src/index.ts) - update this file or create a new entry point to use your preferred runtime.
+Base hono app exported from [app.ts](./src/app.ts). Local development uses [Bun server](https://hono.dev/docs/getting-started/bun) defined in [index.ts](./src/index.ts) - update this file or create a new entry point to use your preferred runtime.
 
 Typesafe env defined in [env.ts](./src/env.ts) - add any other required environment variables here. The application will not start if any required environment variables are missing
 
